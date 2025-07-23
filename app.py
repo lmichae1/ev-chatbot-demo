@@ -3,6 +3,9 @@ from chatbot_utils import ask_azure_openai
 
 st.set_page_config(page_title="EV Car Sales Assistant", page_icon="🚗", layout="centered")
 
+# This displays a large heading on the page
+st.title("EV Car Sales Assistant")
+
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
