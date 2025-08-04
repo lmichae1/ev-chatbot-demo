@@ -10,10 +10,10 @@
 Available in Pearl White, Midnight Black, Electric Blue, Crimson Red, Forest Green (Luna Lux only).
 
 ## Pricing
-- Spark X1 SUV: USD 42,000
-- Volt Coupe S: USD 47,000
-- Eco Urban Sedan: USD 28,000
-- Luna Lux: USD 71,000
+- Spark X1 SUV: SGD 80,000
+- Volt Coupe S: SGD 100,000
+- Eco Urban Sedan: SGD 60,000
+- Luna Lux: USD 120,000
 
 ## Financing
 - 0% interest for 2 years for qualified buyers.
@@ -21,16 +21,22 @@ Available in Pearl White, Midnight Black, Electric Blue, Crimson Red, Forest Gre
 - Trade-in programs and subscription ownership options.
 
 ## COE (Singapore)
-- Category A (Cars ≤1600cc): SGD 43,500 approx.
-- Category B (Cars >1600cc): SGD 47,200 approx.
-- Category C (Goods vehicles & buses): SGD 22,800 approx.
+- Category A (Cars ≤1600cc): SGD 90,500 approx.
+- Category B (Cars >1600cc): SGD 130,500 approx.
+- Category C (Goods vehicles & buses): SGD 90,800 approx.
 - Category D (Motorcycles): SGD 5,200 approx.
 
 ## Promotions
 - Free maintenance for 3 years or 50,000 km.
-- USD 2,000 early EV adopter cash rebate.
-- 3% early bird discount before August 31, 2025.
+- SGD 2,000 early EV adopter cash rebate.
+- 3% early bird discount before August 31, 2026.
 - Referral rewards, free home charger installation, loyalty bonuses.
+
+## Category
+- Spark X1 SUV: Category A
+- Volt Coupe S: Category B
+- Eco Urban Sedan: Category A
+- Luna Lux: Category B
 
 ## Features
 - AI voice assistant with real-time alerts.
