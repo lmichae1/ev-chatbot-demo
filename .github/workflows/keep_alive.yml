@@ -10,4 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Streamlit App
-        run: curl -s https://ev-chatbot-demo1.streamlit.app/ > /dev/null
+        run: |
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" https://ev-chatbot-demo1.streamlit.app/)
+          echo "HTTP status code: $STATUS"
+          if [ $STATUS -eq 200 ]; then
+            echo "✅ Streamlit app is alive!"
+          else
+            echo "❌ Streamlit app did not respond properly!"
+            exit 1
+          fi
