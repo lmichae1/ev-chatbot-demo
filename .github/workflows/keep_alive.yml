@@ -12,14 +12,15 @@ jobs:
       - name: Ping Streamlit App and Log Status
         run: |
           URL="https://ev-chatbot-demo1.streamlit.app/"
-          MAX_RETRIES=3
-          RETRY_COUNT=0
           LOG_FILE="ping_log.txt"
-
+          
           echo "Ping run at $(date)" >> $LOG_FILE
 
+          # Retry loop
+          MAX_RETRIES=3
+          RETRY_COUNT=0
           while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            STATUS=$(curl -L -k -o /dev/null -s -w "%{http_code}" $URL)
+            STATUS=$(curl -L -k --retry 3 --max-time 30 -o /dev/null -s -w "%{http_code}" $URL)
             echo "HTTP status code: $STATUS" >> $LOG_FILE
 
             if [ $STATUS -eq 200 ]; then
