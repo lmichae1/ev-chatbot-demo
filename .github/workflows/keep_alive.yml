@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Streamlit App
-        run: curl -s https://YOUR-STREAMLIT-APP-URL.streamlit.app > /dev/null
+        run: curl -s https://ev-chatbot-demo1.streamlit.app/ > /dev/null
