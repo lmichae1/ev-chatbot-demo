@@ -3,7 +3,7 @@ name: Keep Streamlit App Alive
 on:
   schedule:
     - cron: "0 */2 * * *" # every 2 hours
-  workflow_dispatch: # allow manual trigger
+  workflow_dispatch: # allows manual trigger
 
 jobs:
   ping:
@@ -11,8 +11,11 @@ jobs:
     steps:
       - name: Ping Streamlit App
         run: |
-          STATUS=$(curl -o /dev/null -s -w "%{http_code}" https://ev-chatbot-demo1.streamlit.app/)
+          # Ping the app and follow redirects
+          STATUS=$(curl -L -o /dev/null -s -w "%{http_code}" https://ev-chatbot-demo1.streamlit.app/)
           echo "HTTP status code: $STATUS"
+
+          # Check if the response is 200
           if [ $STATUS -eq 200 ]; then
             echo "✅ Streamlit app is alive!"
           else
