@@ -9,34 +9,49 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install requests
+        run: pip install requests
+
       - name: Ping Streamlit App and Log Status
         run: |
-          URL="https://ev-chatbot-demo1.streamlit.app/"
-          LOG_FILE="ping_log.txt"
-          
-          echo "Ping run at $(date)" >> $LOG_FILE
+          import requests
+          import time
+          from datetime import datetime
 
-          # Retry loop
-          MAX_RETRIES=3
-          RETRY_COUNT=0
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            STATUS=$(curl -L -k --retry 3 --max-time 30 -o /dev/null -s -w "%{http_code}" $URL)
-            echo "HTTP status code: $STATUS" >> $LOG_FILE
+          URL = "https://ev-chatbot-demo1.streamlit.app/"
+          LOG_FILE = "ping_log.txt"
+          MAX_RETRIES = 3
 
-            if [ $STATUS -eq 200 ]; then
-              echo "✅ Streamlit app is alive!" >> $LOG_FILE
-              break
-            else
-              echo "❌ Streamlit app did not respond properly. Retry $((RETRY_COUNT+1))/$MAX_RETRIES..." >> $LOG_FILE
-              RETRY_COUNT=$((RETRY_COUNT+1))
-              sleep 10
-            fi
-          done
+          with open(LOG_FILE, "a") as f:
+              f.write(f"Ping run at {datetime.now()}\n")
 
-          if [ $STATUS -ne 200 ]; then
-            echo "❌ Streamlit app failed after $MAX_RETRIES retries." >> $LOG_FILE
-            exit 1
-          fi
+          for i in range(MAX_RETRIES):
+              try:
+                  r = requests.get(URL, timeout=30)
+                  status = r.status_code
+              except Exception as e:
+                  status = None
+                  error = str(e)
+
+              with open(LOG_FILE, "a") as f:
+                  f.write(f"Attempt {i+1}: Status code: {status if status else 'Error'}\n")
+                  if status == 200:
+                      f.write("✅ Streamlit app is alive!\n")
+                      break
+                  else:
+                      f.write(f"❌ Streamlit app did not respond properly. Retry {i+1}/{MAX_RETRIES}\n")
+                      if status is None:
+                          f.write(f"Error: {error}\n")
+                      time.sleep(10)
+          else:
+              with open(LOG_FILE, "a") as f:
+                  f.write(f"❌ Streamlit app failed after {MAX_RETRIES} retries.\n")
+              exit(1)
 
       - name: Upload ping log as artifact
         uses: actions/upload-artifact@v4
