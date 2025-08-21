@@ -1,13 +1,13 @@
 ## EV Car Sales Assistant
 
-A friendly electric vehicle (EV) chatbot assistant built using **Streamlit** and **Azure OpenAI**, designed to simulate a virtual sales assistant experience. It uses **manual prompt construction** and session-based chat memory to guide users through EV recommendations and test drive bookings.
+A friendly electric vehicle (EV) chatbot assistant built using **Streamlit** and **GROQ OpenAI GPT-OSS**, designed to simulate a virtual sales assistant experience. It uses **manual prompt construction** and session-based chat memory to guide users through EV recommendations and test drive bookings.
 
 ---
 
 ## Features
 
 - Chat UI powered by **Streamlit**
-- Backend integration with **Azure OpenAI (GPT model)**
+- Backend integration with **OpenAI OSS 20B (GPT model)**
 - Manually constructed prompt with contextual system instructions
 - Responds to:
   - EV model recommendations based on user preferences
@@ -23,7 +23,7 @@ A friendly electric vehicle (EV) chatbot assistant built using **Streamlit** and
 
 - Python 3.10+
 - [Streamlit](https://streamlit.io/)
-- [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/)
+- [Groq OpenAI API][(https://console.groq.com/home)]
 - Optional: `.env` management via `python-dotenv`
 
 ---
@@ -35,10 +35,8 @@ git clone https://github.com/yourusername/ev-car-sales-assistant.git
 cd ev-car-sales-assistant
 
 2. Create .env file
-Create a .env file in the root directory and include your Azure OpenAI credentials:
-AZURE_OPENAI_KEY=your_azure_openai_key
-AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT=your-deployment-name  # e.g. gpt-35-turbo
+Create a .env file in the root directory and include your GROQ GPT credentials:
+GROQ_API_KEY=your_groq_key_here
 
 3. Install dependencies
 pip install -r requirements.txt
