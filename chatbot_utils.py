@@ -1,17 +1,15 @@
 import os
 import re
 from dotenv import load_dotenv
-from openai import AzureOpenAI
+from openai import OpenAI
 
 # Load environment variables
 load_dotenv()
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_KEY"),
-    api_version="2024-12-01-preview",
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
 )
-
 
 # Load product FAQ and extract model names
 def load_faq_context_and_models(file_path="product_faqs.md"):
@@ -107,7 +105,7 @@ You are a smart and friendly electric vehicle (EV) sales assistant working for a
 
 
 # Main function to ask GPT with enhanced error handling
-def ask_azure_openai(query, user_profile=None):
+def ask_groq_openai(query, user_profile=None):
     try:
         # Load FAQ and models
         faq_context, model_list = load_faq_context_and_models()
@@ -132,7 +130,7 @@ def ask_azure_openai(query, user_profile=None):
 
         # Make API call with lower temperature for more consistent responses
         response = client.chat.completions.create(
-            model=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+            model="openai/gpt-oss-20b",
             messages=prompt_messages,
             temperature=0.3,  # Reduced from 0.7 for more consistent responses
             max_tokens=500,  # Limit response length

@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from chatbot_utils import ask_azure_openai
+from chatbot_utils import ask_groq_openai
 
 st.set_page_config(page_title="EV Car Sales Assistant", page_icon="🚗", layout="centered")
 
@@ -43,7 +43,7 @@ if user_query:
 
     # Assistant response
     with st.chat_message("assistant"):
-        response = ask_azure_openai(user_query)
+        response = ask_groq_openai(user_query)
         st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
 
